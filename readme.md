@@ -6,7 +6,8 @@ This is a mod for the [Digitech FreqOut](https://digitech.com/dp/freqout/) guita
 
 ## Pedal Overview
 
-The pedal is pretty well made, apparently it's made from the same circuit as the Ricochet. There's a single PCB for the power & DSP section. The face is done with three small PCBs connected between them by a ribbon. The face and the main PCB are connected by a header, pretty fragile. The analog section is powered by ±14V. The CODEC is a CS4272 by Cirrus Logic, the DSP is a DSPB56725AF by NXP, there's a STM8 microcontroller for the control.
+The pedal is pretty well made, apparently it's made from the same circuit as the Ricochet. There's a single PCB for the power & DSP section. The face is done with three small PCBs connected between them by a ribbon. The face and the main PCB are connected by a header, pretty fragile.  
+The analog section is powered by ±14V, which is impressive. The CODEC is a CS4272 by Cirrus Logic, the DSP is a DSPB56725AF by NXP, there's a STM8 microcontroller for the control.
 
 ![Circuit](/img/circuit.jpg)
 ![Circuit Back](/img/circuitback.jpg)
