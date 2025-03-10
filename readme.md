@@ -22,15 +22,10 @@ The only mod to the pedal itself is adding a switched jack on the "type" pot CV 
 
 ## Peripheral
 
-A filtered PWM output generates a voltage that replaces the one of the type pot. DIP switches are added to choose which momentary footswitche are linked to which Type.
+### Hardware
 
-| **Type** | **Voltage** |
-|----------|-------------|
-| Sub      | 0V          |
-| 1st      | 0.24V       |
-| 2nd      | 0.89V       |
-| 3rd      | 1.57V       |
-| 5th      | 2.27V       |
-| Nat Low  | 2.95V       |
-| Nat Hi   | 3.3V        |
 
+
+### Firmware
+
+A filtered PWM output generates a voltage that replaces the one of the type pot. By combinating 3 footswitches, we can cover the 7 possible states of the type pot. The firmware is written for the ATtiny1606, for no particular reason, any µC with a PWM output could work.
