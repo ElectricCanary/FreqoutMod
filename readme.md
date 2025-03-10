@@ -24,7 +24,7 @@ The only mod to the pedal itself is adding a switched jack on the "type" pot CV 
 
 ### Hardware
 
-![Schematic](/img/schem.png)
+![Schematic](/img/Schem.png)
 
 ### Firmware
 
