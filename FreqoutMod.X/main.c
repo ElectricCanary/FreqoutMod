@@ -34,7 +34,7 @@
  */
 
 #include <avr/io.h>
-#define F_CPU 3300000UL
+#define F_CPU 20000000UL
 #include <util/delay.h>
 
 //standard fuses
@@ -122,8 +122,8 @@ void Timer_Init(void)
 void IO_Init(void)
 {
     //LED & CV as output
-    LED_VPORT.DIR |= (1<<LED1_PIN) | (1<<LED2_PIN) | (1<<LED3_PIN);
-    CV_VPORT.DIR |= (1<<CV_PIN);
+    LED_VPORT.DIR |= (1 << LED1_PIN) | (1 << LED2_PIN) | (1 << LED3_PIN);
+    CV_VPORT.DIR |= (1 << CV_PIN);
     //Pull-up for footswitches
     FOOT1_PINCTRL |= PORT_PULLUPEN_bm;
     FOOT2_PINCTRL |= PORT_PULLUPEN_bm;
@@ -132,14 +132,21 @@ void IO_Init(void)
     LED_VPORT.OUT |= (1<<LED_DEFAULT_PIN);
 }
 
+void clock_init(void)
+{
+    CCP = CCP_IOREG_gc;
+    CLKCTRL.MCLKCTRLB = 0;
+}
+
 void main(void) 
 {
+    clock_init();
     IO_Init();
     Timer_Init();
     
     uint8_t footpins[NB_SWITCH] = {FOOT1_PIN, FOOT2_PIN, FOOT3_PIN};
     uint8_t ledpins[NB_SWITCH] = {LED1_PIN, LED2_PIN, LED3_PIN};
-    uint8_t state;
+    uint8_t state = 1;
     uint8_t previousstate;
     uint8_t types[] = {TYPE_SUB, TYPE_1ST, TYPE_2ND, TYPE_NATHI, TYPE_3RD, TYPE_5TH, TYPE_NATLOW};
     
@@ -153,6 +160,7 @@ void main(void)
             if((state & (1 << i)) && !((previousstate & (1 << i)) >> i)) //button pressed
             {
                 setType(types[state - 1]);
+                
                 for(uint8_t j = 0; j < NB_SWITCH; j++)
                 {
                     LED_VPORT.OUT &= ~(1 << ledpins[j]);

@@ -15,7 +15,7 @@ The analog section is powered by ±14V, which is impressive. The CODEC is a CS42
 
 ## Pedal Mod
 
-The only mod to the pedal itself is adding a switched jack on the "type" pot CV signal. The final assembly with the added jack isn't easy, but still doable.
+The only mod to the pedal itself is adding a switched jack on the "type" pot CV signal. The final assembly with the added jack isn't easy, but still doable. The jack should be pretty small since there's not much space for it. I used an open Lunberg jack.
 
 ![Pedal Mod](/img/facemod.jpg)
 ![Jack](/img/jack.jpg)
