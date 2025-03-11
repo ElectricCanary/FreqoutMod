@@ -54,9 +54,9 @@ LOCKBITS = 0xC5; // {LB=NOLOCK}
 #define CV_VPORT VPORTB
 #define CV_PORT PORTB
 #define CV_PINCTRL PORTB.PIN0CTRL
-#define LED1_PIN 4
 #define LED_VPORT VPORTA
 #define LED_PORT PORTA
+#define LED1_PIN 4
 #define LED1_PINCTRL PORTA.PIN4CTRL
 #define LED2_PIN 5
 #define LED2_PINCTRL PORTA.PIN5CTRL
@@ -75,12 +75,12 @@ LOCKBITS = 0xC5; // {LB=NOLOCK}
 #define TIMER_TOP 0xFF
 #define NB_SWITCH 3
 #define TYPE_SUB 0
-#define TYPE_1ST 1
-#define TYPE_2ND 2
-#define TYPE_3RD 3
-#define TYPE_5TH 4
-#define TYPE_NATLOW 5
-#define TYPE_NATHI 6
+#define TYPE_1ST 0.167
+#define TYPE_2ND 0.333
+#define TYPE_3RD 0.5
+#define TYPE_5TH 0.667
+#define TYPE_NATLOW 0.88
+#define TYPE_NATHI 1
 #define NB_TYPE 7
 #define TYPE_DEFAULT TYPE_SUB
 #define LED_DEFAULT_PIN LED1_PIN
@@ -105,9 +105,9 @@ uint8_t debounce(VPORT_t VPORT, uint8_t PIN)   //tells with certainty if button 
 	}
 }
 
-void setType(uint8_t type)
-{
-    TCA0.SINGLE.CMP0 = (TIMER_TOP / NB_TYPE) * type;
+void setType(float type)
+{       
+    TCA0.SINGLE.CMP0 = TIMER_TOP * type;
 }
 
 void Timer_Init(void)
@@ -148,7 +148,7 @@ void main(void)
     uint8_t ledpins[NB_SWITCH] = {LED1_PIN, LED2_PIN, LED3_PIN};
     uint8_t state = 1;
     uint8_t previousstate;
-    uint8_t types[] = {TYPE_SUB, TYPE_1ST, TYPE_2ND, TYPE_NATHI, TYPE_3RD, TYPE_5TH, TYPE_NATLOW};
+    float types[] = {TYPE_SUB, TYPE_1ST, TYPE_2ND, TYPE_NATHI, TYPE_3RD, TYPE_5TH, TYPE_NATLOW};
     
     while(1)
     {
